@@ -277,8 +277,10 @@ class ScreenStack(context: Context?) : ScreenContainer<ScreenStackFragment>(cont
         // that we do not modify the original list. There are cases when `op.draw` can call
         // `drawChild` which would modify the list through which we are iterating. See more:
         // https://github.com/software-mansion/react-native-screens/pull/1406
+        // val drawingOpsCopy = drawingOps
+        // drawingOps = ArrayList()
         val drawingOpsCopy = drawingOps
-        drawingOps = ArrayList()
+        drawingOps = mutableListOf()
         for (op in drawingOpsCopy) {
             op.draw()
             drawingOpPool.add(op)
